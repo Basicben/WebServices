@@ -1,0 +1,25 @@
+{
+    "books": [
+        {
+            "Title": "The green prince",
+            "Author": "Masab",
+            "BestSellerMonth": 5,
+            "Id": 1,
+            "Month": 2
+        },
+        {
+            "Title": "The green prince",
+            "Author": "Masab",
+            "BestSellerMonth": 5,
+            "Id": 2,
+            "Month": 5
+        },
+        {
+            "Title": "The green prince",
+            "Author": "Masab",
+            "BestSellerMonth": 2,
+            "Id": 3,
+            "Month": 1
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+API DOCUMENT :
+
+localhost:8080/bestsellers 
+
+	Returns json with books
+
+localhost:8080/getbook
+	
+	Expects one param as a query string with the name of bookId and it should indicate a number.
+
+localhost:8080/getbookbymonth/:month
+	:month suppose to be a number between 1-12
