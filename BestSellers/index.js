@@ -3,6 +3,9 @@ var url = require('url');
 var bookSeller = require('./node_modules/bookseller.js');
 var app = express();
 
+
+app.set('port', (process.env.PORT || 5000));
+
 app.get('/bestsellers',function(req,res){
 	// Get All Books from JSON	
 	res.json(bookSeller.getAllBooks());
@@ -40,5 +43,6 @@ app.get('/getbookbymonth/:month',function(req,res){		// getbookbymonth/222 for e
 
 
 
-app.listen(8080);
-console.log("Listening to 8080");
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
