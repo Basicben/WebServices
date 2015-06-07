@@ -3,8 +3,7 @@ var url = require('url');
 var bookSeller = require('./node_modules/bookseller.js');
 var app = express();
 
-
-app.set('port', (process.env.PORT || 5000));
+app.use('/',express.static('./public')).listen(8080);
 
 app.get('/bestsellers',function(req,res){
 	// Get All Books from JSON	
@@ -16,6 +15,7 @@ app.get('/getbook',function(req,res){
 	var urlPart = url.parse(req.url,true);
 	var query = urlPart.query;
 	// validate query string.
+	console.log('bookId' , query.bookId);
 	if(query.bookId != null && query.bookId > 0) {
 		// get specific book object
 		var bookObj = bookSeller.getBookById(query.bookId);
@@ -34,15 +34,9 @@ app.param('month',function(req,res,next,value){
 app.get('/getbookbymonth/:month',function(req,res){		// getbookbymonth/222 for example
 	// Get all books by month
 	// Print param (:month)
-	console.log(req.params);
+	console.log('params : ',req.params);
 	// Get Array of books in a specific month
 	var objArray = bookSeller.getBooksByMonth(req.params.month);
 	// if array is empty or null print so. if not, print json.
-	objArray == null || objArray.length <= 0 ? res.send("No Books This Month") : res.json(objArray);
-});
-
-
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+	objArray == null || objArray.length <= 0 ? res.json(null) : res.json(objArray);
 });

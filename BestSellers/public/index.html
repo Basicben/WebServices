@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="BestSellersApp">
+<head>
+	<title> Best Sellers With Angular </title>
+	<!-- Angular Library -->
+	<script src="js/lib/angular/angular.js"></script>
+	<!-- Controller -->
+	<script src="js/controller.js"></script>
+	<!-- Bootstrap Stylesheet Library -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+
+</head>
+<body ng-controller="mainCntrl">
+	<div class="col-md-12" id="wrapper">
+		
+		<div style="height: 40px;"> 
+			<button class="btn btn-primary col-md-4" ng-click="getAllBooks(); bookTab = 1"> All Books </button>
+			<button class="btn btn-primary col-md-4" ng-click="bookTab = 2"> Get Book By Id </button>
+			<button class="btn btn-primary col-md-4" ng-click="bookTab = 3"> Get Book By Month </button>
+		</div>
+
+		<div ng-if="bookTab == 1">
+			<table class="col-md-12">
+
+				<tr> <th> Id </th> <th> Title </th> <th> Author </th> <th> Month </th> <th> Best Seller Month </th> </tr>
+
+				<tr ng-repeat="book in bookList"> 
+					<td > {{book.Id}} </td> <th> {{book.Title}} </th> <th> {{book.Author}} </th> <th> {{book.Month}} </th> <th> {{book.BestSellerMonth}} </th>
+				</tr>
+
+			</table>	
+		</div>
+
+		<div ng-if="bookTab == 2">
+			<div>
+				<label>  Please Enter Book Id
+					<input class="form-control" ng-model="idNumber" type="number" placeholder="Book Id" />
+				</label>
+				<button class="btn btn-success" ng-click="getBookById(idNumber)"> Get Book </button>
+				<div ng-if="bookById != null">
+					<table class="col-md-12">
+
+						<tr> <th> Id </th> <th> Title </th> <th> Author </th> <th> Month </th> <th> Best Seller Month </th> </tr>
+
+						<tr> 
+							<td > {{bookById.Id}} </td> <th> {{bookById.Title}} </th> <th> {{bookById.Author}} </th> <th> {{bookById.Month}} </th> <th> {{bookById.BestSellerMonth}} </th>
+						</tr>
+
+					</table>
+				</div>
+
+			</div>
+			
+		</div>
+
+		<div ng-if="bookTab == 3">
+			<div>
+				<label>  Please Enter Month
+					<input class="form-control" ng-model="month" type="number" placeholder="Book Id" />
+				</label>
+				<button class="btn btn-success" ng-click="getBookByMonth(month)"> Get Book </button>
+				<div ng-if="booksByMonth != null">
+					<table class="col-md-12">
+
+						<tr> <th> Id </th> <th> Title </th> <th> Author </th> <th> Month </th> <th> Best Seller Month </th> </tr>
+
+						<tr ng-repeat="book in booksByMonth"> 
+							<td > {{book.Id}} </td> <th> {{book.Title}} </th> <th> {{book.Author}} </th> <th> {{book.Month}} </th> <th> {{book.BestSellerMonth}} </th>
+						</tr>
+
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
